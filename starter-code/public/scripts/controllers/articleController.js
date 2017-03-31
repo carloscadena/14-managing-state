@@ -3,7 +3,8 @@
 (function(module) {
   const articleController = {};
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // DONE: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  //(This function uses ArticleView.index to append all the articles. ArticleView will removes all articles and will re-append all articles from the ctx.articles property)
   articleController.index = (ctx) => articleView.index(ctx.articles);
 
   // REVIEW: Middleware for grabbing one article by ID:
@@ -13,7 +14,8 @@
       next();
     };
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // DONE: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  //(This function allows for a user to view certain articles by their ID. This is achieved by specifying it in the URL. This functions the same way when it's called in loadByAuthor and loadByCategory)
     Article.findWhere('article_id', ctx.params.article_id, articleData);
   };
 

@@ -12,7 +12,8 @@
 
   const render = Handlebars.compile($('#repo-template').text());
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // DONE: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  //this is listing all the names of our repos. It is called in repoView.index
   repoView.index = function() {
     ui();
 

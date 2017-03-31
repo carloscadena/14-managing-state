@@ -8,7 +8,7 @@ const requestProxy = require('express-request-proxy'); // REVIEW: We've added a 
 const PORT = process.env.PORT || 3000;
 const app = express();
 // const conString = 'postgres://USERNAME:PASSWORD@HOST:PORT';
-const conString = ''; // TODO: Don't forget to set your own conString
+const conString = 'postgres://localhost:5432'; // TODO: Don't forget to set your own conString
 const client = new pg.Client(conString);
 client.connect();
 client.on('error', function(error) {
@@ -19,8 +19,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('./public'));
 
-// COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
-// (put your response in a comment here)
+// DONE: What is this function doing? Why do we need it? Where does it receive a request from?
+// (this is allowing us to pass the github token to the browser if the token exists in the local environment if the user goes to /github)
 function proxyGitHub(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
   (requestProxy({
@@ -34,8 +34,8 @@ app.get('/', (request, response) => response.sendFile('index.html', {root: '.'})
 app.get('/new', (request, response) => response.sendFile('new.html', {root: '.'}));
 app.get('/github/*', proxyGitHub);
 
-// COMMENT: What is this route doing? Where does it receive a request from?
-// (put your response in a comment here)
+// DONE: What is this route doing? Where does it receive a request from?
+// (this sends a get request to the database to join the tables and receive certain data back depending on what row is requested)
 app.get('/articles/find', (request, response) => {
   let sql = `SELECT * FROM articles
             INNER JOIN authors
@@ -47,8 +47,8 @@ app.get('/articles/find', (request, response) => {
   .catch(console.error);
 })
 
-// COMMENT: What is this route doing? Where does it receive a request from?
-// (put your response in a comment here)
+// DONE: What is this route doing? Where does it receive a request from?
+// (this allows the user to see the data by specific categories, the request is made in routes.js)
 app.get('/categories', (request, response) => {
   client.query(`SELECT DISTINCT category FROM articles;`)
   .then(result => response.send(result.rows))
@@ -92,7 +92,7 @@ app.post('/articles', (request, response) => {
 });
 
 // COMMENT: What is this route doing? Where does it receive a request from?
-// (put your response in a comment here)
+// (this allows the user to update an article. the specific article is targeted by it's ID)
 app.put('/articles/:id', (request, response) => {
   client.query(`
     UPDATE authors

@@ -11,5 +11,6 @@ page('/author', '/');
 page('/author/:authorName', articleController.loadByAuthor, articleController.index);
 page('/category/:categoryName', articleController.loadByCategory, articleController.index);
 
-// COMMENT: What is this function doing?
+// DONE: What is this function doing?
+//(initiated the middleware page.js functionality allowing for use to use direct routes to specific data)
 page();

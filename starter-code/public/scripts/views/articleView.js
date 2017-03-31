@@ -3,7 +3,8 @@
 (function(module) {
   const articleView = {};
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // DONE: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  //this compiles the home page handlebars template with the articles. it is is called in articleView.index and appends all the articles from the DB
   const render = function(article) {
     let template = Handlebars.compile($('#article-template').text());
 

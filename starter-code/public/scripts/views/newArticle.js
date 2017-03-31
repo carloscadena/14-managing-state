@@ -1,7 +1,8 @@
 (function() {
   const newArticle = {};
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // DONE: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  //This hides the other page sections and shows the form for adding new articles. On change it calls the newArticle.create function
   newArticle.initNewArticlePage = function() {
     $('.tab-content').show();
     $('#export-field').hide();
